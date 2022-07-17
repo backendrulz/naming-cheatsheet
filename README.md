@@ -1,157 +1,159 @@
 <p align="center">
-  <a href="https://github.com/kettanaito/naming-cheatsheet">
-    <img src="./naming-cheatsheet.png" alt="Naming cheatsheet" />
+  <a href="https://github.com/kettanaito/naming-cheatsheet" style="text-decoration: none">
+    <img src="./naming-cheatsheet.png" alt="Logo cheatsheet de nombres" />
   </a>
 </p>
 
-# Naming cheatsheet
 
-- [English language](#english-language)
-- [Naming convention](#naming-convention)
-- [S-I-D](#s-i-d)
-- [Avoid contractions](#avoid-contractions)
-- [Avoid context duplication](#avoid-context-duplication)
-- [Reflect the expected result](#reflect-the-expected-result)
-- [Naming functions](#naming-functions)
-  - [A/HC/LC pattern](#ahclc-pattern)
-    - [Actions](#actions)
-    - [Context](#context)
-    - [Prefixes](#prefixes)
-- [Singular and Plurals](#singular-and-plurals)
+# Cheatsheet de nombres
+
+- [El idioma inglés](#el-idioma-inglés)
+- [Convención de nomenclatura](#convención-de-nomenclatura)
+- [C-I-D](#c-i-d)
+- [Evitar abreviar](#evitar-abreviar)
+- [Evitar la duplicación de contexto](#evitar-la-duplicación-de-contexto)
+- [Reflejar el resultado esperado](#reflejar-el-resultado-esperado)
+- [Nomenclatura de funciones](#nomenclatura-de-funciones)
+  - [Patrón A/HC/LC](#patrón-ahclc)
+    - [Acciones](#acciones)
+    - [Contexto](#contexto)
+    - [Prefijos](#prefijos)
+- [Singulares y Plurales](#singulares-y-plurales)
+- [Traducción al español](#traducción-al-español)
 
 ---
 
-Naming things is hard. This sheet attempts to make it easier.
+Nombrar cosas es difícil. Este documento intenta hacerlo más fácil.
 
-Although these suggestions can be applied to any programming language, I will use JavaScript to illustrate them in practice.
+Aunque estas sugerencias se pueden aplicar a cualquier lenguaje de programación, usaré JavaScript para ilustrarlas en la práctica.
 
-## English language
+## El idioma inglés
 
-Use English language when naming your variables and functions.
+Usa el idioma inglés al nombrar tus variables y funciones.
 
 ```js
-/* Bad */
+/* Malo */
 const primerNombre = 'Gustavo'
 const amigos = ['Kate', 'John']
 
-/* Good */
+/* Bueno */
 const firstName = 'Gustavo'
 const friends = ['Kate', 'John']
 ```
 
-> Like it or not, English is the dominant language in programming: the syntax of all programming languages is written in English, as well as countless documentations and educational materials. By writing your code in English you dramatically increase its cohesiveness.
+> Nos guste o no, el inglés es el lenguaje dominante en la programación: la sintaxis de todos los lenguajes de programación está escrita en inglés, así como innumerables documentaciones y materiales educativos. Al escribir su código en inglés, aumenta drásticamente la consistencia.
 
-## Naming convention
+## Convención de nomenclatura
 
-Pick **one** naming convention and follow it. It may be `camelCase`, `PascalCase`, `snake_case`, or anything else, as long as it remains consistent. Many programming languages have their own traditions regarding naming conventions; check the documentation for your language or study some popular repositories on Github!
+Elije **una** convención de nomenclatura y síguela. Puede ser `camelCase`, `PascalCase`, `snake_case` o cualquier otra, siempre y cuando siga siendo consistente. Muchos lenguajes de programación tienen sus propias tradiciones con respecto a las convenciones de nomenclatura; ¡Consulta la documentación de tu idioma o estudia algunos repositorios populares en Github!
 
 ```js
-/* Bad */
+/* Malo */
 const page_count = 5
 const shouldUpdate = true
 
-/* Good */
+/* Bueno */
 const pageCount = 5
 const shouldUpdate = true
 
-/* Good as well */
+/* Bueno también */
 const page_count = 5
 const should_update = true
 ```
 
-## S-I-D
+## C-I-D
 
-A name must be _short_, _intuitive_ and _descriptive_:
+Un nombre debe ser _corto_, _intuitivo_ y _descriptivo_:
 
-- **Short**. A name must not take long to type and, therefore, remember;
-- **Intuitive**. A name must read naturally, as close to the common speech as possible;
-- **Descriptive**. A name must reflect what it does/possesses in the most efficient way.
+- **Corto**. Un nombre no debe tardar mucho en escribirse ni en recordar;
+- **Intuitivo**. Un nombre debe leerse de forma natural, lo más cerca posible del habla común;
+- **Descriptivo**. Un nombre debe reflejar lo que hace/posee de la manera más eficiente.
 
 ```js
-/* Bad */
+/* Malo */
 const a = 5 // "a" could mean anything
 const isPaginatable = a > 10 // "Paginatable" sounds extremely unnatural
 const shouldPaginatize = a > 10 // Made up verbs are so much fun!
 
-/* Good */
+/* Bueno */
 const postCount = 5
 const hasPagination = postCount > 10
 const shouldPaginate = postCount > 10 // alternatively
 ```
 
-## Avoid contractions
+## Evitar abreviar
 
-Do **not** use contractions. They contribute to nothing but decreased readability of the code. Finding a short, descriptive name may be hard, but contraction is not an excuse for not doing so.
+**No** uses abreviaciónes. Contribuyen a nada más que a la disminución de la legibilidad del código. Encontrar un nombre breve y descriptivo puede ser difícil, pero la abreviación no es una excusa para no hacerlo.
 
 ```js
-/* Bad */
+/* Malo */
 const onItmClk = () => {}
 
-/* Good */
+/* Bueno */
 const onItemClick = () => {}
 ```
 
-## Avoid context duplication
+## Evitar la duplicación de contexto
 
-A name should not duplicate the context in which it is defined. Always remove the context from a name if that doesn't decrease its readability.
+Un nombre no debe duplicar el contexto en el que se define. Eliminar siempre el contexto de un nombre si eso no disminuye su legibilidad.
 
 ```js
 class MenuItem {
-  /* Method name duplicates the context (which is "MenuItem") */
+  /* El nombre del método duplica el contexto (que es "MenuItem") */
   handleMenuItemClick = (event) => { ... }
 
-  /* Reads nicely as `MenuItem.handleClick()` */
+  /* Se lee muy bien como `MenuItem.handleClick()` */
   handleClick = (event) => { ... }
 }
 ```
 
-## Reflect the expected result
+## Reflejar el resultado esperado
 
-A name should reflect the expected result.
+Un nombre debe reflejar el resultado esperado.
 
 ```jsx
-/* Bad */
+/* Malo */
 const isEnabled = itemCount > 3
 return <Button disabled={!isEnabled} />
 
-/* Good */
+/* Bueno */
 const isDisabled = itemCount <= 3
 return <Button disabled={isDisabled} />
 ```
 
 ---
 
-# Naming functions
+# Nomenclatura de funciones
 
-## A/HC/LC Pattern
+## El patrón A/HC/LC (A/CA/CB)
 
-There is a useful pattern to follow when naming functions:
+Hay un patrón útil a seguir al nombrar funciones:
 
 ```
-prefix? + action (A) + high context (HC) + low context? (LC)
+prefijo? + acción (A) + contexto alto (CA) + contexto bajo? (CB)
 ```
 
-Take a look at how this pattern may be applied in the table below.
+Echa un vistazo a cómo se puede aplicar este patrón en la tabla a continuación.
 
-| Name                   | Prefix   | Action (A) | High context (HC) | Low context (LC) |
+| Nombre                   | Prefijo   | Acción (A) | Contexto alto (CA) | Contexto bajo (CB) |
 | ---------------------- | -------- | ---------- | ----------------- | ---------------- |
 | `getUser`              |          | `get`      | `User`            |                  |
 | `getUserMessages`      |          | `get`      | `User`            | `Messages`       |
 | `handleClickOutside`   |          | `handle`   | `Click`           | `Outside`        |
 | `shouldDisplayMessage` | `should` | `Display`  | `Message`         |                  |
 
-> **Note:** The order of context affects the meaning of a variable. For example, `shouldUpdateComponent` means _you_ are about to update a component, while `shouldComponentUpdate` tells you that _component_ will update on itself, and you are but controlling when it should be updated.
-> In other words, **high context emphasizes the meaning of a variable**.
+> **Nota:** El orden del contexto afecta el significado de una variable. Por ejemplo, `shouldUpdateComponent` significa que _tu_ estás a punto de actualizar un componente, mientras que `shouldComponentUpdate` le dice que _component_ se actualizará por sí mismo, y tu sólo controlas cuándo debe actualizarse.
+> En otras palabras, **el contexto alto enfatiza el significado de una variable**.
 
 ---
 
-## Actions
+## Acciones
 
-The verb part of your function name. The most important part responsible for describing what the function _does_.
+La parte del verbo del nombre de la función. La parte más importante responsable de describir lo que la función _hace_.
 
 ### `get`
 
-Accesses data immediately (i.e. shorthand getter of internal data).
+Accede inmediatamente a los datos (es decir, el acceso directo de los datos internos).
 
 ```js
 function getFruitCount() {
@@ -159,9 +161,9 @@ function getFruitCount() {
 }
 ```
 
-> See also [compose](#compose).
+> Ver también [compose](#compose).
 
-You can use `get` when performing asynchronous operations as well:
+También puedes usar `get` al realizar operaciones asincrónicas:
 
 ```js
 async function getUser(id) {
@@ -172,7 +174,7 @@ async function getUser(id) {
 
 ### `set`
 
-Sets a variable in a declarative way, with value `A` to value `B`.
+Establece una variable de forma declarativa, con el valor `A` al valor `B`.
 
 ```js
 let fruits = 0
@@ -187,7 +189,7 @@ console.log(fruits) // 5
 
 ### `reset`
 
-Sets a variable back to its initial value or state.
+Devuelve una variable a su valor o estado inicial.
 
 ```js
 const initialFruits = 5
@@ -205,9 +207,9 @@ console.log(fruits) // 5
 
 ### `remove`
 
-Removes something _from_ somewhere.
+Elimina algo _de_ alguna parte.
 
-For example, if you have a collection of selected filters on a search page, removing one of them from the collection is `removeFilter`, **not** `deleteFilter` (and this is how you would naturally say it in English as well):
+Por ejemplo, si tienes una colección de filtros seleccionados en una página de búsqueda, eliminar uno de ellos de la colección es `removeFilter`, **no** `deleteFilter` (y así es como lo diría naturalmente también en inglés):
 
 ```js
 function removeFilter(filterName, filters) {
@@ -218,13 +220,13 @@ const selectedFilters = ['price', 'availability', 'size']
 removeFilter('price', selectedFilters)
 ```
 
-> See also [delete](#delete).
+> Ver también [delete](#delete).
 
 ### `delete`
 
-Completely erases something from the realms of existence.
+Borra algo por completo.
 
-Imagine you are a content editor, and there is that notorious post you wish to get rid of. Once you clicked a shiny "Delete post" button, the CMS performed a `deletePost` action, **not** `removePost`.
+Imagina que eres un editor de contenido y hay una publicación de la que deseas deshacerte. Al hacer clic en el botón "Borrar publicación", el CMS realizó una acción `deletePost`, **no** `removePost`.
 
 ```js
 function deletePost(id) {
@@ -232,19 +234,19 @@ function deletePost(id) {
 }
 ```
 
-> See also [remove](#remove).
+> Ver también [remove](#remove).
 
-> **`remove` or `delete`?**
+> **`remove` o `delete`?**
 >
-> When the difference between `remove` and `delete` is not so obvious to you, I'd sugguest looking at their opposite actions - `add` and `create`.
-> The key difference between `add` and `create` is that `add` needs a destination while `create` **requires no destination**. You `add` an item _to somewhere_, but you don't "`create` it _to somewhere_".
-> Simply pair `remove` with `add` and `delete` with `create`.
+> Cuando la diferencia entre `remove` y `delete` no es tan obvia, te sugiero que observes sus acciones opuestas: `add` y `create`.
+> La diferencia clave entre `add` y `create` es que `add` necesita un destino, mientras que `create` **no requiere destino**. Tu `add` (añades) un elemento _en algún lugar_, pero no  "`create` (creas)  _a algún lugar_".
+> Simplementa empareja `remove` con `add` y `delete` con `create`.
 >
-> Explained in detail [here](https://github.com/kettanaito/naming-cheatsheet/issues/74#issue-1174942962).
+> Explicado con detalle [aquí](https://github.com/kettanaito/naming-cheatsheet/issues/74#issue-1174942962).
 
 ### `compose`
 
-Creates new data from the existing one. Mostly applicable to strings, objects, or functions.
+Crea nuevos datos a partir de los existentes. Principalmente aplicable a cadenas, objetos o funciones.
 
 ```js
 function composePageUrl(pageName, pageId) {
@@ -252,15 +254,15 @@ function composePageUrl(pageName, pageId) {
 }
 ```
 
-> See also [get](#get).
+> Ver también [get](#get).
 
 ### `handle`
 
-Handles an action. Often used when naming a callback method.
+Controla una acción. A menudo se usa al nombrar un método de devolución de llamada (callback).
 
 ```js
 function handleLinkClick() {
-  console.log('Clicked a link!')
+  console.log('Ha cliqueado un link!')
 }
 
 link.addEventListener('click', handleLinkClick)
@@ -268,62 +270,62 @@ link.addEventListener('click', handleLinkClick)
 
 ---
 
-## Context
+## Contexto
 
-A domain that a function operates on.
+Dominio en el que opera una función.
 
-A function is often an action on _something_. It is important to state what its operable domain is, or at least an expected data type.
+Una función es a menudo una acción sobre _algo_. Es importante indicar cuál es su dominio operable, o al menos un tipo de datos esperado.
 
 ```js
-/* A pure function operating with primitives */
+/* Una función pura que opera con primitivos */
 function filter(list, predicate) {
   return list.filter(predicate)
 }
 
-/* Function operating exactly on posts */
+/* Función que opera exactamente en las publicaciones */
 function getRecentPosts(posts) {
   return filter(posts, (post) => post.date === Date.now())
 }
 ```
 
-> Some language-specific assumptions may allow omitting the context. For example, in JavaScript, it's common that `filter` operates on Array. Adding explicit `filterArray` would be unnecessary.
+> Algunos supuestos específicos del lenguaje pueden permitir omitir el contexto. Por ejemplo, en JavaScript, es común que `filter` opere sobre un Array. Usar `filterArray` sería innecesario.
 
 ---
 
-## Prefixes
+## Prefijos
 
-Prefix enhances the meaning of a variable. It is rarely used in function names.
+El prefijo mejora el significado de una variable. Rara vez se usa en nombres de funciones.
 
 ### `is`
 
-Describes a characteristic or state of the current context (usually `boolean`).
+Describe una característica o estado del contexto actual (generalmente `boolean`).
 
 ```js
 const color = 'blue'
-const isBlue = color === 'blue' // characteristic
-const isPresent = true // state
+const isBlue = color === 'blue' // característica
+const isPresent = true // estado
 
 if (isBlue && isPresent) {
-  console.log('Blue is present!')
+  console.log('¡El azul está presente!')
 }
 ```
 
 ### `has`
 
-Describes whether the current context possesses a certain value or state (usually `boolean`).
+Describe si el contexto actual posee cierto valor o estado (generalmente `boolean`).
 
 ```js
-/* Bad */
+/* Malo */
 const isProductsExist = productsCount > 0
 const areProductsPresent = productsCount > 0
 
-/* Good */
+/* Bueno */
 const hasProducts = productsCount > 0
 ```
 
 ### `should`
 
-Reflects a positive conditional statement (usually `boolean`) coupled with a certain action.
+Refleja una declaración condicional positiva (generalmente  `boolean`) junto con una determinada acción.
 
 ```js
 function shouldUpdateUrl(url, expectedUrl) {
@@ -333,12 +335,12 @@ function shouldUpdateUrl(url, expectedUrl) {
 
 ### `min`/`max`
 
-Represents a minimum or maximum value. Used when describing boundaries or limits.
+Representa un valor mínimo o máximo. Se utiliza para describir límites.
 
 ```js
 /**
- * Renders a random amount of posts within
- * the given min/max boundaries.
+ * Muestra una cantidad aleatoria de publicaciones
+ * dentro de los límites mínimos/máximos dados.
  */
 function renderPosts(posts, minPosts, maxPosts) {
   return posts.slice(0, randomBetween(minPosts, maxPosts))
@@ -347,7 +349,7 @@ function renderPosts(posts, minPosts, maxPosts) {
 
 ### `prev`/`next`
 
-Indicate the previous or the next state of a variable in the current context. Used when describing state transitions.
+Indica el estado anterior o siguiente de una variable en el contexto actual. Se utiliza cuando se describen transiciones de estado.
 
 ```jsx
 async function getPosts() {
@@ -360,16 +362,19 @@ async function getPosts() {
 }
 ```
 
-## Singular and Plurals
+## Singulares y plurales
 
-Like a prefix, variable names can be made singular or plural depending on whether they hold a single value or multiple values.
+Al igual que un prefijo, los nombres de las variables se pueden hacer singulares o plurales dependiendo de si contienen un solo valor o varios.
 
 ```js
-/* Bad */
+/* Malo */
 const friends = 'Bob'
 const friend = ['Bob', 'Tony', 'Tanya']
 
-/* Good */
+/* Bueno */
 const friend = 'Bob'
 const friends = ['Bob', 'Tony', 'Tanya']
 ```
+
+## Traducción al español
+Traducción realizada por [Cristian Ferreyra](https://github.com/backendrulz/)
